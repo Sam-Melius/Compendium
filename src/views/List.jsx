@@ -5,7 +5,8 @@ export default function List() {
     const [search, setSearch] = useState('');
     const [results, setResults] = useState([]);
 
-    const list = results;
+    const searching = !!search.length;
+    const list = searching ? results : characters;
 
     const handleSearch = (event) => {
         setSearch(event.target.value);
