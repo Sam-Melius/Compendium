@@ -2,6 +2,17 @@ import { useEffect, useState } from "react";
 
 export default function List() {
     const [characters, setCharacters] = useState([]);
+    const [search, setSearch] = useState('');
+    const [results, setResults] = useState([]);
+
+    const list = results;
+
+    const handleSearch = (event) => {
+        setSearch(event.target.value);
+        const filteredSearch = characters.filter((character) => 
+        character.name.toLowerCase().includes(event.target.value.toLowerCase().trim()));
+        setResults(filteredSearch);
+    }
 
     useEffect(() => {
         const getCharacter = async () => {
@@ -19,8 +30,12 @@ export default function List() {
         <>
         <h1>List of Characters</h1>
         <>
+        <input
+            placeholder="Search"
+            value={search}
+            onChange={handleSearch} />
         <ul>
-            {characters.map((character) => {
+            {list.map((character) => {
                 return (
                     <li key={character.id}>
                         {character.name}
