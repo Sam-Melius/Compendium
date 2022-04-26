@@ -4,6 +4,7 @@ export default function List() {
     const [characters, setCharacters] = useState([]);
     const [search, setSearch] = useState('');
     const [results, setResults] = useState([]);
+    const [ loading, setLoading] = useState(true);
 
     const searching = !!search.length;
     const list = searching ? results : characters;
@@ -24,27 +25,33 @@ export default function List() {
                 name: `${character.firstname} ${character.lastname}`
             }));
             setCharacters(characterData);
+            setLoading(false);
         };
         getCharacter();
     }, []);
     return (
         <>
         <h1>List of Characters</h1>
-        <>
-        <input
-            placeholder="Search"
-            value={search}
-            onChange={handleSearch} />
-        <ul>
-            {list.map((character) => {
-                return (
-                    <li key={character.id}>
-                        {character.name}
-                    </li>
-                )
-            })}
-        </ul>
-        </>
+        {loading ? (
+            <p>Loading</p>
+        ) : (
+            <>
+            <input
+                placeholder="Search"
+                value={search}
+                onChange={handleSearch} />
+            <ul>
+                {list.map((character) => {
+                    return (
+                        <li key={character.id}>
+                            {character.name}
+                        </li>
+                    )
+                })}
+            </ul>
+            </> 
+        )}
+        
         </>
     )
 }
