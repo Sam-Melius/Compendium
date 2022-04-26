@@ -1,4 +1,5 @@
 import { Route, Link, Switch } from 'react-router-dom';
+import List from './views/List';
 
 
 export default function App() {
