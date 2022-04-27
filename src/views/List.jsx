@@ -37,9 +37,9 @@ export default function List() {
         ) : (
             <>
             <input
-                placeholder="Search"
+                placeholder="Find Character"
                 value={search}
-                onChange={handleSearch} />
+                onChange={(e) => {handleSearch(e)}} />
             <ul>
                 {list.map((character) => {
                     return (
